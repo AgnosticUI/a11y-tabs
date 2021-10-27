@@ -40,17 +40,16 @@ class Tabs {
    */
   initTabs() {
     this.resetPanels();
+    this.deselectTabs();
     for (let i = 0; i < this.tabItems.length; i++) {
       const tab = this.tabItems[i];
       this.tabs[i] = tab;
       this.tabs[i].index = i;
-      tab.classList.remove('active');
-      if (i === this.currentIndex) {
-        tab.classList.add('active');
-        this.activatePanel(tab.getAttribute('aria-controls'));
-      }
       tab.addEventListener('click', this.handleClick);
       tab.addEventListener('keydown', this.handleKeydown);
+      if (i === this.currentIndex) {
+        this._selectTab(tab);
+      }
     }
   }
 
@@ -96,6 +95,10 @@ class Tabs {
   selectTab(tabElement) {
     this.deselectTabs();
     this.resetPanels();
+    this._selectTab(tabElement);
+  }
+
+  _selectTab(tabElement) {
     tabElement.classList.add('active');
     tabElement.setAttribute('aria-selected', 'true');
     tabElement.removeAttribute('tabindex');
@@ -157,9 +160,10 @@ class Tabs {
     ev.preventDefault();
 
     /**
-     * Ensure we have proper tabindex and focus on currently selected tab
+     * Ensure we have proper focus on currently selected tab. We do
+     * NOT want to set its tabindex yet though; that only happens when
+     * we click, enter, or space on a tab button.
      */
-    this.tabs[this.currentIndex].setAttribute('tabindex', 0);
     this.tabs[this.currentIndex].focus();
   }
 }
