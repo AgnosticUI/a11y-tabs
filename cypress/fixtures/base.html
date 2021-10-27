@@ -6,11 +6,25 @@
   <title>Tests — Base</title>
   <link rel="stylesheet"
         href="./styles.css" />
+  <style>
+    /* "demo only" styles */
+    main {
+      margin: 3rem auto;
+      max-width: 600px;
+      width: 90%;
+    }
+  
+    [role="tabpanel"] {
+      margin-block-start: 1rem;
+      margin-block-end: 1rem;
+      margin-inline-start: .75rem;
+      margin-inline-end: .75rem;
+    }
+  </style>
 </head>
 
 <body>
   <main>
-    <h1>Tests — Base</h1>
     <div class="tab-list "
          role="tablist">
       <button class="tab-item tab-button tab-button-large active"
@@ -29,14 +43,16 @@
     <div id="panel-1"
          role="tabpanel"
          tab-title="Tab 1">
-      <div>Tab 1 content (we don&#x27;t add any margins or padding so consumer can have more control of gutters as they
-        wish).</div>
+      <div>Tab 1 content—note that we don&#x27;t add any margins or padding so consumer can have more control of gutters as
+        they
+        wish. The margins here are set on the demo page not in the library.</div>
     </div>
     <div id="panel-2"
          role="tabpanel"
          tab-title="Tab 2">
-      <div>Tab 2 content (we don&#x27;t add any margins or padding so consumer can have more control of gutters as they
-        wish).</div>
+      <div>Tab 2 content—note that we don&#x27;t add any margins or padding so consumer can have more control of gutters as
+        they
+        wish. The margins here are set on the demo page not in the library.</div>
     </div>
     <div id="panel-3"
          role="tabpanel"

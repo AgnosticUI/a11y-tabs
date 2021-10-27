@@ -44,7 +44,29 @@ describe('A11yTabs', () => {
     cy.get('[aria-controls="panel-3"]').should('have.focus');
   });
 
-  xit('should support ENTER and SPACE', () => {});
-  xit('should have correct aria-selected', () => {});
-  xit('should have correct aria-expanded', () => {});
+  it('should support ENTER', () => {
+    cy.get('[aria-controls="panel-2"]').focus().type('Cypress.io{enter}');
+    cy.contains('Tab 2 content').should('be.visible');
+  });
+
+  it('should have correct class, aria-selected, and aria-expanded', () => {
+    cy.get('[aria-controls="panel-3"]')
+      .focus()
+      .type('Cypress.io{enter}')
+      .should('have.class', 'active')
+      .should('have.attr', 'aria-selected', 'true');
+    cy.get('#panel-3').should('have.attr', 'aria-expanded', 'true');
+    cy.get('[aria-controls="panel-2"]')
+      .focus()
+      .type('Cypress.io{enter}')
+      .should('have.class', 'active')
+      .should('have.attr', 'aria-selected', 'true');
+    cy.get('#panel-2').should('have.attr', 'aria-expanded', 'true');
+    cy.get('[aria-controls="panel-1"]')
+      .focus()
+      .type('Cypress.io{enter}')
+      .should('have.attr', 'aria-selected', 'true')
+      .should('have.class', 'active');
+    cy.get('#panel-1').should('have.attr', 'aria-expanded', 'true');
+  });
 });
