@@ -18,7 +18,7 @@ A lightweight (<1Kb) JavaScript package to facilitate a11y-compliant tabbed inte
 **Unavailble features:**
 
 - `aria-orientation` vertical with up, down arrow support (coming soon!)
-- This implementation uses the manual activation pattern which requires the user to click, <enter>, or <space> on focused tab to open corresponding panel (as opposed to the [selection follow focus](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_selection_follows_focus) or automatic activation patterns)
+- This implementation uses the manual activation pattern which requires the user to click or press enter / space on a focused tab button to open its corresponding panel (as opposed to the [selection follow focus](https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_selection_follows_focus) or automatic activation patterns)
 
 ## Credits & Inspiration
 
