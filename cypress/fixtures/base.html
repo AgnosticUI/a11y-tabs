@@ -1,0 +1,67 @@
+<doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Tests — Base</title>
+  <link rel="stylesheet"
+        href="./styles.css" />
+</head>
+
+<body>
+  <main>
+    <h1>Tests — Base</h1>
+    <div class="tab-list "
+         role="tablist">
+      <button class="tab-item tab-button tab-button-large active"
+              role="tab"
+              aria-controls="panel-1"
+              aria-selected="true">Tab 1</button>
+      <button class="tab-item tab-button tab-button-large"
+              role="tab"
+              aria-controls="panel-2"
+              aria-selected="false">Tab 2</button>
+      <button class="tab-item tab-button tab-button-large"
+              role="tab"
+              aria-controls="panel-3"
+              aria-selected="false">Tab 3</button>
+    </div>
+    <div id="panel-1"
+         role="tabpanel"
+         tab-title="Tab 1">
+      <div>Tab 1 content (we don&#x27;t add any margins or padding so consumer can have more control of gutters as they
+        wish).</div>
+    </div>
+    <div id="panel-2"
+         role="tabpanel"
+         tab-title="Tab 2">
+      <div>Tab 2 content (we don&#x27;t add any margins or padding so consumer can have more control of gutters as they
+        wish).</div>
+    </div>
+    <div id="panel-3"
+         role="tabpanel"
+         tab-title="Tab 3">
+      <p>
+        You should be able to tab into the entire panel, and then proceed to tab into some of these meaningless anchor
+        tags
+        aka random <a id="yahoolinktest"
+           href="www.yahoo.com">yahoo
+          links</a>. Here's one more for good measure; random <a id="yahoolinktest2"
+           href="www.yahoo.com">yahoo link</a>.
+      </p>
+      <p>Did you try tabbing in? Try also shift-tab to go backwards. Remember, once you get up into those tab buttons
+        you
+        have to use the arrow keys :)</p>
+      <p>You can also try <i>Home</i> and <i>End</i> which should take you to leftmost and rightmost tabs respectively.
+      </p>
+    </div>
+  </main>
+  <script src="./a11y-tabs.js"></script>
+  <script>
+            window.addEventListener('DOMContentLoaded', () => {
+              new A11yTabs('.tab-item', '[role="tabpanel"]', 0);
+            });
+  </script>
+</body>
+
+</html>

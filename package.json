@@ -1,0 +1,43 @@
+{
+  "name": "a11y-tabs",
+  "version": "0.0.0",
+  "description": "A lightweight JavaScript package to facilitate a11y-compliant tabbed interfaces",
+  "homepage": "https://github.com/AgnosticUI/a11y-tabs",
+  "license": "MIT",
+  "main": "dist/a11y-tabs.js",
+  "module": "dist/a11y-tabs.esm.js",
+  "types": "dist/a11y-tabs.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "author": "Rob Levin (https://developtodesign.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AgnosticUI/a11y-tabs"
+  },
+  "keywords": [
+    "tabs",
+    "tablist",
+    "tabpanel",
+    "accessibility",
+    "a11y"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "serve": "npx serve cypress/fixtures",
+    "test": "cypress open",
+    "ci": "cypress run",
+    "compress": "gzip -9 -fkc dist/a11y-tabs.min.js > dist/a11y-tabs.min.js.gz",
+    "show": "ls -lh dist/a11y-tabs.min.js.gz | awk '{print \"Gzipped script size:\", $5\"B\"}'",
+    "size": "npm run build -- --silent && npm run compress --silent && npm run show && rm dist/a11y-tabs.min.js.gz"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "cypress": "^8.7.0",
+    "cypress-plugin-tab": "^1.0.5",
+    "prettier": "^2.4.1",
+    "rollup": "^2.58.3",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
