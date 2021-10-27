@@ -2,6 +2,9 @@
 
 A lightweight (<1Kb) JavaScript package to facilitate a11y-compliant tabbed interfaces.
 
+- [Demo on Codepen↗](https://codepen.io/roblevin/pen/qBXmvoL)
+- Documentation (coming soon)
+
 **Features:**
 
 - Support for keyboard navigation `home`, `end`, `left`, `right`, `enter`, and `space`
