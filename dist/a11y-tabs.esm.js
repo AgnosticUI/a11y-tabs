@@ -1,18 +1,20 @@
 /**
- *   Tabs — a lightweight JavaScript package to facilitate a11y-compliant tabbed interfaces
+ * Tabs — a lightweight JavaScript package to facilitate a11y-compliant tabbed interfaces
  */
 class Tabs {
   tabs = [];
   tabItems = null;
   panels = null;
   currentIndex = -1;
+  isVerticalOrientation = false;
 
   /**
    *
-   * @param {string} tabsSelector A CSS selector to find by `querySelectorAll`, your tab items.
-   * This selector must find all the tab buttons with role="tab". These should also contain `aria-controls`
+   * @param {string} tabListSelector A CSS selector to pointing to your tablist — the parent element to your tab buttons
+   * which must have attribute `[role="tablist"]` as we will combine this selector to find all its child tab buttons with
+   * `role="tab"`. So your tab buttons must all have the `[role="tab"]` attributes. These should also contain `aria-controls`
    * attribute pointing to the ID of corresponding tab-panel. For example:
-   *   `<button class="tab-item tab-button" role="tab" aria-controls="panel-1">Tab 1</button>`
+   *   `<div role="tablist"><button class="tab-item tab-button" role="tab" aria-controls="panel-1">Tab 1</button>...and so on`
    * @param {string} panelsSelector A CSS selector to find by `querySelectorAll`, your panel items. This selector
    * must be able to find all panels with role="tabpanel" items that correspond to your tab button's `aria-controls` IDs:
    *   ```js
@@ -22,10 +24,13 @@ class Tabs {
    *   ```
    * @param {number} activeIndex The index of the initial tab you'd like opened. Defaults to 0.
    */
-  constructor(tabsSelector, panelsSelector, activeIndex) {
+  constructor(tabListSelector, panelsSelector, activeIndex) {
     const initialActiveIndex = activeIndex || 0;
-    this.tabItems = document.querySelectorAll(tabsSelector);
+    this.tabItems = document.querySelectorAll(`${tabListSelector} [role="tab"]`);
     this.panels = document.querySelectorAll(panelsSelector);
+    const tablist = document.querySelector(tabListSelector);
+    const orientation = tablist.getAttribute('aria-orientation');
+    this.isVerticalOrientation = orientation && orientation === 'vertical' ? true : false;
     this.currentIndex = initialActiveIndex;
     this.selectTab = this.selectTab.bind(this);
     this.deselectTabs = this.deselectTabs.bind(this);
@@ -113,6 +118,20 @@ class Tabs {
     this.selectTab(ev.target);
   }
 
+  decrementIndex() {
+    this.currentIndex--;
+    if (this.currentIndex < 0) {
+      this.currentIndex = this.tabItems.length - 1;
+    }
+  }
+
+  incrementIndex() {
+    this.currentIndex++;
+    if (this.currentIndex >= this.tabItems.length) {
+      this.currentIndex = 0;
+    }
+  }
+
   /**
    * This is used to implement our a11y keyboard navigation.
    *
@@ -120,26 +139,35 @@ class Tabs {
    * @returns
    */
   handleKeydown(ev) {
-    /**
-     * TODO -- we will need to implement both orientation (e.g. vertical vs. horizontal tabs) and UP/DOWN
-     */
     switch (ev.key) {
+      case 'Up': // IE Edge
+      case 'ArrowUp':
+        // If orientation vertical update current index else "fall-through" so default return
+        if (this.isVerticalOrientation) {
+          this.decrementIndex();
+          break;
+        }
+      case 'Down': // IE Edge
+      case 'ArrowDown':
+        // If orientation vertical update current index else "fall-through" so default return
+        if (this.isVerticalOrientation) {
+          this.incrementIndex();
+          break;
+        }
       case 'Left': // IE Edge
       case 'ArrowLeft':
-        this.currentIndex--;
-        if (this.currentIndex < 0) {
-          this.currentIndex = this.tabItems.length - 1;
+        // If orientation horizontal update current index else "fall-through" so default return
+        if (!this.isVerticalOrientation) {
+          this.decrementIndex();
+          break;
         }
-        console.log('ci after LEFT: ', this.currentIndex);
-        break;
       case 'Right': // IE Edge
       case 'ArrowRight':
-        this.currentIndex++;
-        if (this.currentIndex >= this.tabItems.length) {
-          this.currentIndex = 0;
+        // If orientation horizontal update current index else "fall-through" so default return
+        if (!this.isVerticalOrientation) {
+          this.incrementIndex();
+          break;
         }
-        console.log('ci after RIGHT: ', this.currentIndex);
-        break;
       case 'Home':
       case 'ArrowHome':
         this.currentIndex = 0;
@@ -154,7 +182,8 @@ class Tabs {
         ev.target.focus();
         break;
       default:
-        // If another key pressed returning prevents the `preventDefault` below (thus preserving normal behavior)
+        // If an unaccounted for key is pressed returning here prevents the
+        // `preventDefault` below (thus preserving normal behavior)
         return;
     }
     ev.preventDefault();

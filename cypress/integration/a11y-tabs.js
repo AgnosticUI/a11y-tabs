@@ -30,7 +30,7 @@ describe('A11yTabs', () => {
     cy.get('[aria-controls="panel-3"]').should('have.focus');
   });
 
-  it('should circular tab to right', () => {
+  it('should provide circular tabbing', () => {
     cy.get('[aria-controls="panel-1"]').click().type('Cypress.io{rightarrow}');
     cy.get('[aria-controls="panel-2"]').should('have.focus').type('Cypress.io{rightarrow}');
     cy.get('[aria-controls="panel-3"]').should('have.focus').type('Cypress.io{rightarrow}');

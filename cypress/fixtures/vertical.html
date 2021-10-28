@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Tests — Base</title>
+    <title>Tests — Vertical Tabs</title>
     <link rel="stylesheet"
           href="./styles.css" />
     <style>
@@ -13,7 +13,7 @@
         max-width: 600px;
         width: 90%;
       }
-  
+
       [role="tabpanel"] {
         margin-block-start: 1rem;
         margin-block-end: 1rem;
@@ -21,13 +21,14 @@
         margin-inline-end: .75rem;
       }
     </style>
-    </head>
+  </head>
 
   <body>
     <main>
-      <section class="tabs">
+      <section class="tabs tabs-vertical">
         <div class="tab-list"
-             role="tablist">
+             role="tablist"
+             aria-orientation="vertical">
           <button class="tab-item tab-button tab-button-large active"
                   role="tab"
                   aria-controls="panel-1"
@@ -48,19 +49,19 @@
             gutters as
             they
             wish. The margins here are set on the demo page not in the library.</div>
-          </div>
-          <div id="panel-2"
-               role="tabpanel"
-               tab-title="Tab 2">
+        </div>
+        <div id="panel-2"
+             role="tabpanel"
+             tab-title="Tab 2">
           <div>Tab 2 content—note that we don&#x27;t add any margins or padding so consumer can have more control of
             gutters as
             they
             wish. The margins here are set on the demo page not in the library.</div>
-          </div>
-          <div id="panel-3"
-               role="tabpanel"
-               tab-title="Tab 3">
-            <p>
+        </div>
+        <div id="panel-3"
+             role="tabpanel"
+             tab-title="Tab 3">
+          <p>
             You should be able to tab into the entire panel, and then proceed to tab into some of these meaningless
             anchor
             tags
@@ -68,7 +69,7 @@
                href="www.yahoo.com">yahoo
               links</a>. Here's one more for good measure; random <a id="yahoolinktest2"
                href="www.yahoo.com">yahoo link</a>.
-            </p>
+          </p>
           <p>Did you try tabbing in? Try also shift-tab to go backwards. Remember, once you get up into those tab
             buttons
             you
@@ -76,7 +77,7 @@
           <p>You can also try <i>Home</i> and <i>End</i> which should take you to leftmost and rightmost tabs
             respectively.
           </p>
-          </div>
+        </div>
       </section>
     </main>
     <script src="./a11y-tabs.js"></script>
@@ -84,7 +85,7 @@
       window.addEventListener('DOMContentLoaded', () => {
         new A11yTabs('.tab-list', '[role="tabpanel"]', 0);
       });
-        </script>
-    </body>
+    </script>
+  </body>
 
   </html>
