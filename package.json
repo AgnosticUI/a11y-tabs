@@ -27,6 +27,7 @@
     "serve": "npx serve cypress/fixtures",
     "test": "cypress open",
     "ci": "cypress run",
+    "types": "npx -p typescript tsc a11y-tabs.js --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "compress": "gzip -9 -fkc dist/a11y-tabs.min.js > dist/a11y-tabs.min.js.gz",
     "show": "ls -lh dist/a11y-tabs.min.js.gz | awk '{print \"Gzipped script size:\", $5\"B\"}'",
     "size": "npm run build -- --silent && npm run compress --silent && npm run show && rm dist/a11y-tabs.min.js.gz"
