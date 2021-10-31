@@ -3,7 +3,7 @@
 A lightweight (<1Kb) JavaScript package to facilitate a11y-compliant tabbed interfaces.
 
 - [Demo on Codepen↗](https://codepen.io/roblevin/pen/qBXmvoL)
-- Documentation (coming soon)
+- [Documentation↗](https://agnosticui.github.io/a11y-tabs/)
 
 **Features:**
 
@@ -22,6 +22,8 @@ A lightweight (<1Kb) JavaScript package to facilitate a11y-compliant tabbed inte
 
 ## Credits & Inspiration
 
-A heartfelt thank you to [@KittyGiraudel](https://github.com/KittyGiraudel) for creating [a11y-dialog](https://github.com/KittyGiraudel/a11y-dialog) which inspired me to create a kindred-spirited and hopefully, eventually, comparable `a11y-tabs`.
+### Kitty Giraudel
+A heartfelt thank you to [@KittyGiraudel](https://github.com/KittyGiraudel) for creating [a11y-dialog](https://github.com/KittyGiraudel/a11y-dialog) which inspired me to create a kindred-spirited and comparable `a11y-tabs`. Specifically, I found `a11y-dialog`'s small surface API, clear documentation and sandbox demo made ramping up quite efficient. As such, I followed the same patterns with `a11y-tabs`.
 
+### WAI-ARIA &amp; MDN
 I was also inspired by the [WAI-ARIA practices](https://www.w3.org/TR/wai-aria-practices-1.1/#intro) resources, and [MDN tab role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role) documentation efforts. Both resources certainly provided helpful and prescriptive guidance for this project.
