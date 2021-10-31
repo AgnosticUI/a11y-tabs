@@ -2,8 +2,8 @@
 
 A lightweight (<1Kb) JavaScript package to facilitate a11y-compliant tabbed interfaces.
 
-- [Demo on Codepen↗](https://codepen.io/roblevin/pen/qBXmvoL)
 - [Documentation↗](https://agnosticui.github.io/a11y-tabs/)
+- [Demo on Codepen↗](https://codepen.io/roblevin/pen/qBXmvoL)
 
 **Features:**
 
