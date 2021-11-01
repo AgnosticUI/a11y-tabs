@@ -1,6 +1,6 @@
 {
   "name": "a11y-tabs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A lightweight JavaScript package to facilitate a11y-compliant tabbed interfaces",
   "homepage": "https://github.com/AgnosticUI/a11y-tabs",
   "license": "MIT",
